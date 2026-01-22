@@ -24,7 +24,7 @@
     terminal = "screen-256color";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 44 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
   security.acme = {
     defaults.email = "lkjxqljsxh5@temp.mailbox.org";
     defaults.profile = "shortlived";
