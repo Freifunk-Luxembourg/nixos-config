@@ -30,6 +30,7 @@
     enable = true;
     virtualHosts = {
       "91.98.42.110" = {
+        enableACME = true;
         default = true;
         root = "${pkgs.nginx}/html/";
       };
