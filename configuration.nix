@@ -28,7 +28,7 @@
     virtualHosts = {
       "91.98.42.110" = {
         default = true;
-        root = "${pkgs.nginx}/html/"
+        root = "${pkgs.nginx}/html/";
       };
     };
   };
