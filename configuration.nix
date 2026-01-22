@@ -25,6 +25,10 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 22 80 44 ];
+  security.acme = {
+    defaults.email = "lkjxqljsxh5@temp.mailbox.org";
+    acceptTerms = true;
+  };
 
   services.nginx = {
     enable = true;
