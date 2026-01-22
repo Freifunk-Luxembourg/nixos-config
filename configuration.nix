@@ -29,6 +29,7 @@
     defaults.email = "lkjxqljsxh5@temp.mailbox.org";
     defaults.profile = "shortlived";
     defaults.validMinDays = 3;
+    defaults.extraLegoFlags = [ "--disable-cn" ];
     acceptTerms = true;
   };
 
