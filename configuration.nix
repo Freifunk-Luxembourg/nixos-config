@@ -1,30 +1,51 @@
-{
-  modulesPath,
-  lib,
-  pkgs,
-  ...
-} @ args:
+{ modulesPath, pkgs, ... }:
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
     ./disk-config.nix
+    ./common.nix
   ];
+
   boot.loader.grub = {
     efiSupport = true;
     efiInstallAsRemovable = true;
   };
-  services.openssh.enable = true;
 
-  environment.systemPackages = map lib.lowPrio [
-    pkgs.curl
-    pkgs.gitMinimal
+  environment.systemPackages = with pkgs; [
+    curl
+    wget
+    git
+    vim
+    python3
   ];
 
-  users.users.root.openssh.authorizedKeys.keys =
-  [
-    # change this to your ssh key
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLFCOqpPOTZEQiWcY9TyVQnMoc5bCYlxLaRKhiB/uxo"
-  ];
+  programs.tmux = {
+    enable = true;
+    terminal = "screen-256color";
+  };
+
+  services.nginx = {
+    enabled = true;
+    virtualHosts = {
+      "91.98.42.110" = {
+        default = true;
+      };
+    };
+  };
+
+  nix = {
+    settings = {
+      auto-optimise-store = true;
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 30d";
+    };
+    nixPath = [
+      "nixpkgs=${pkgs.path}"
+    ];
+  };
 
   system.stateVersion = "25.11";
 }
