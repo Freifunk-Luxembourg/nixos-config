@@ -27,6 +27,8 @@
   networking.firewall.allowedTCPPorts = [ 22 80 44 ];
   security.acme = {
     defaults.email = "lkjxqljsxh5@temp.mailbox.org";
+    defaults.profile = "shortlived";
+    defaults.validMinDays = 3;
     acceptTerms = true;
   };
 
