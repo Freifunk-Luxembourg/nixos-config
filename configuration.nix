@@ -38,7 +38,7 @@
     virtualHosts = {
       "91.98.42.110" = {
         enableACME = true;
-        root = "${pkgs.nginx}/html/";
+        addSSL = true;
       };
     };
   };
