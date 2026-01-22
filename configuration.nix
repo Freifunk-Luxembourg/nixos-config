@@ -24,7 +24,10 @@
     terminal = "screen-256color";
   };
 
+  networking.firewall.allowedTCPPorts = [ 22 80 44 ];
+
   services.nginx = {
+    enable = true;
     virtualHosts = {
       "91.98.42.110" = {
         default = true;
