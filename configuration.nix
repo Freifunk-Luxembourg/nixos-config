@@ -25,7 +25,6 @@
   };
 
   services.nginx = {
-    enabled = true;
     virtualHosts = {
       "91.98.42.110" = {
         default = true;
