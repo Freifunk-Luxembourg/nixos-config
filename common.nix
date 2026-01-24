@@ -1,4 +1,4 @@
-{ modulesPath, lib, pkgs, ... }:
+{ ... }:
 {
   services.openssh = {
     enable = true;
@@ -8,6 +8,6 @@
 
   users.users.root.openssh.authorizedKeys.keys =
   [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLFCOqpPOTZEQiWcY9TyVQnMoc5bCYlxLaRKhiB/uxo"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOLFCOqpPOTZEQiWcY9TyVQnMoc5bCYlxLaRKhiB/uxo" # trix
   ];
 }
