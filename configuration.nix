@@ -36,7 +36,7 @@
   services.nginx = {
     enable = true;
     virtualHosts = {
-      "91.98.42.110" = {
+      "157.180.34.237" = {
         enableACME = true;
         addSSL = true;
       };
