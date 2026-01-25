@@ -20,13 +20,29 @@
         "type": "github"
       }
     },
+    "nix-freifunk": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760865478,
+        "narHash": "sha256-MoMDyLKlV84erVyuHD0CAAjKsBBNPgLMuAIXSByv38o=",
+        "owner": "nix-freifunk",
+        "repo": "nix-freifunk",
+        "rev": "4d33a8a3a7c0fe26a78e1ff60c7761deea5442e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-freifunk",
+        "repo": "nix-freifunk",
+        "type": "github"
+      }
+    },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1768773494,
-        "narHash": "sha256-XsM7GP3jHlephymxhDE+/TKKO1Q16phz/vQiLBGhpF4=",
+        "lastModified": 1769089682,
+        "narHash": "sha256-9yA/LIuAVQq0lXelrZPjLuLVuZdm03p8tfmHhnDIkms=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "77ef7a29d276c6d8303aece3444d61118ef71ac2",
+        "rev": "078d69f03934859a181e81ba987c2bb033eebfc5",
         "type": "github"
       },
       "original": {
@@ -39,6 +55,7 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "nix-freifunk": "nix-freifunk",
         "nixpkgs": "nixpkgs"
       }
     }

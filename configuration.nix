@@ -24,7 +24,7 @@
     terminal = "screen-256color";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 443 ];
+  networking.firewall.allowedTCPPorts = [ 22 80 443 1000 ];
   security.acme = {
     defaults.email = "lkjxqljsxh5@temp.mailbox.org";
     defaults.profile = "shortlived";
@@ -40,6 +40,30 @@
         enableACME = true;
         addSSL = true;
       };
+    };
+  };
+
+  services.fastd = {
+    "testService" = {
+      peers = [
+        {
+          name = "fflux";
+          remote = [
+            { address = "fflux.freifunk.lu"; port = 10000; }
+          ];
+          pubkey = "35461acdf925c688290095eb3cf83699925b045e566fb719266ab456a6aab9af";
+          extraConfig = ''
+            float yes;
+          '';
+        }
+      ];
+      peerLimit = 5;
+      secretKeyIncludeFile = "/opt/supersecret";
+      mtu = 1194;
+      method = [ "salsa2012+umac" "salsa2012+gmac" ];
+      bind = [ "any port 1000" ];
+      persistInterface = false;
+      l2tpOffload = false;
     };
   };
 
