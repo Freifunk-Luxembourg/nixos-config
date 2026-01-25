@@ -1,4 +1,4 @@
-{ modulesPath, pkgs, ... }:
+{ modulesPath, config, pkgs, ... }:
 {
   imports = [
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -17,7 +17,10 @@
     git
     vim
     python3
+    batctl
   ];
+
+  boot.extraModulePackages = with config.boot.kernelPackages; [ batman_adv ];
 
   programs.tmux = {
     enable = true;
