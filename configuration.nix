@@ -57,13 +57,14 @@
           '';
         }
       ];
-      peerLimit = 5;
-      secretKeyIncludeFile = "/opt/supersecret";
       mtu = 1406;
+      secretKeyIncludeFile = "/opt/supersecret";
       method = [ "salsa2012+umac" "salsa2012+gmac" ];
       bind = [ "any port 1000" ];
-      persistInterface = false;
-      l2tpOffload = false;
+      mode = "tap";
+      extraConfig = ''
+        interface "ze-tap";
+      '';
     };
   };
 
