@@ -59,7 +59,7 @@
       ];
       peerLimit = 5;
       secretKeyIncludeFile = "/opt/supersecret";
-      mtu = 1194;
+      mtu = 1406;
       method = [ "salsa2012+umac" "salsa2012+gmac" ];
       bind = [ "any port 1000" ];
       persistInterface = false;
