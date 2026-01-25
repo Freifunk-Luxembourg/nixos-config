@@ -47,7 +47,7 @@
   };
 
   services.fastd = {
-    "testService" = {
+    "fflux" = {
       peers = [
         {
           name = "fflux";
