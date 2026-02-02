@@ -59,6 +59,26 @@
             float yes;
           '';
         }
+        {
+          name = "fflux-gw1";
+          remote = [
+            { address = "fflux-gw1.freifunk.lu"; port = 10000; }
+          ];
+          pubkey = "d5af753220451b6c181cca469835da9c67d3ca9603465e13a5adb9b64f89f3c6";
+          extraConfig = ''
+            float yes;
+          '';
+        }
+        {
+          name = "fflux-gw2";
+          remote = [
+            { address = "fflux-gw2.freifunk.lu"; port = 10000; }
+          ];
+          pubkey = "3c42a77d863cb0475ec5a9e9b9c63ff557f8bac991b78a26427f100cc130462b";
+          extraConfig = ''
+            float yes;
+          '';
+        }
       ];
       mtu = 1406;
       secretKeyIncludeFile = "/opt/supersecret";
