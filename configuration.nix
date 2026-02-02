@@ -80,6 +80,7 @@
           '';
         }
       ];
+      peerLimit = 30;
       mtu = 1406;
       secretKeyIncludeFile = "/opt/supersecret";
       method = [ "salsa2012+umac" "salsa2012+gmac" ];
