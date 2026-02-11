@@ -11,6 +11,51 @@
     efiInstallAsRemovable = true;
   };
 
+  #networking.useNetworkd = true;
+
+  # Mullvad WireGuard configuration
+  networking.wireguard.interfaces.mullvad = {
+    privateKeyFile = "/opt/wireguard";
+    table = "100";
+    listenPort = 51821;
+    ips = [ "10.68.151.245/32" ];
+    peers = [{
+      publicKey = "GE2WP6hmwVggSvGVWLgq2L10T3WM2VspnUptK5F4B0U=";
+      allowedIPs = [ "0.0.0.0/0" ];
+      endpoint = "91.90.123.2:51820";
+      persistentKeepalive = 25;
+    }];
+  };
+
+  #systemd.network.networks."30-mullvad" = {
+  #  matchConfig.Name = "mullvad";
+  #  address = [ "10.68.151.245/32" ];
+  #  routingPolicyRules = [{
+  #    FirewallMark = 51820;
+  #    Table = 100;
+  #    Priority = 100;
+  #  }];
+  #};
+
+  # This kind of config is needed for the freifunky-things, but we're not doing that yet, but clearly stuff is broken enough
+  #boot.kernel.sysctl = {
+  #  "net.ipv4.conf.mullvad.rp_filter" = 0;
+  #};
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 22 80 443 1000 ];
+    allowedUDPPorts = [ 51821 ];
+    #trustedInterfaces = [ "mullvad" ];
+  };
+
+  # NixOS Hotfix: Bypass rpfilter for mullvad interface to allow VPN return traffic
+  # Not really a hotfix, as sometimes you need to run it again manually when firewall configuration happens???
+  system.activationScripts.vpn-rpfilter = ''
+    ${pkgs.iptables}/bin/iptables -t mangle -I nixos-fw-rpfilter -i mullvad -j RETURN 2>/dev/null || true
+  '';
+
+  # System packages
   environment.systemPackages = with pkgs; [
     curl
     wget
@@ -27,7 +72,6 @@
     terminal = "screen-256color";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 80 443 1000 ];
   security.acme = {
     defaults.email = "lkjxqljsxh5@temp.mailbox.org";
     defaults.profile = "shortlived";
