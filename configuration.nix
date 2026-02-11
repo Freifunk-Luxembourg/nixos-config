@@ -82,7 +82,7 @@
       ];
       peerLimit = 30;
       mtu = 1406;
-      secretKeyIncludeFile = "/opt/supersecret";
+      secretKeyIncludeFile = "/opt/fastd";
       method = [ "salsa2012+umac" "salsa2012+gmac" ];
       bind = [ "any port 1000" ];
       mode = "tap";
